@@ -1,0 +1,24 @@
+# Backend - FastAPI
+FROM python:3.14-slim
+
+# Install curl for downloading uv
+RUN apt update && apt install -y curl && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Add uv to PATH and create virtual environment
+ENV PATH="/root/.local/bin:/opt/venv/bin:$PATH"
+RUN uv venv /opt/venv
+
+# Install dependencies
+COPY requirements.txt .
+RUN uv pip install --no-cache -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
