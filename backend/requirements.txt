@@ -54,7 +54,7 @@ markupsafe==3.0.3
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
-pydantic==2.12.2
+pydantic==2.12.3
     # via
     #   fastapi
     #   fastapi-cloud-cli
@@ -76,7 +76,7 @@ rich-toolkit==0.15.1
     # via
     #   fastapi-cli
     #   fastapi-cloud-cli
-rignore==0.7.0
+rignore==0.7.1
     # via fastapi-cloud-cli
 sentry-sdk==2.42.0
     # via fastapi-cloud-cli
@@ -102,12 +102,12 @@ typing-inspection==0.4.2
     # via pydantic
 urllib3==2.5.0
     # via sentry-sdk
-uvicorn==0.37.0
+uvicorn==0.38.0
     # via
     #   fastapi
     #   fastapi-cli
     #   fastapi-cloud-cli
-uvloop==0.21.0
+uvloop==0.22.1
     # via uvicorn
 watchfiles==1.1.1
     # via uvicorn
