@@ -7,7 +7,12 @@ RUN apt update && apt install -y \
     sudo \
     ca-certificates \
     gnupg \
+    locales \
     && rm -rf /var/lib/apt/lists/*
+
+# Without this, bash and other tools will display warnings about missing locale
+RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+    locale-gen en_US.UTF-8
 
 # Install Node.js (+ npm) robustly
 ARG NODE_VERSION="24"

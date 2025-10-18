@@ -23,6 +23,7 @@
         "python.linting.ruffEnabled": true,
         "python.testing.pytestEnabled": true,
         "svelte.enable-ts-plugin": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
         "[python]": {
           "editor.defaultFormatter": "charliermarsh.ruff",
           "editor.formatOnSave": true,
