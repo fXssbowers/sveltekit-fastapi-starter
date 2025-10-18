@@ -1,4 +1,4 @@
-FROM python:3.14-slim
+FROM python:3.13-slim
 
 # Install system dependencies
 RUN apt update && apt install -y \
@@ -28,13 +28,19 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
-# Install uv and global Node.js packages
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh && \
-    npm install -g npm@latest
+# Update npm to latest version
+RUN npm install -g npm@latest
 
-    
-WORKDIR /workspace
-
-# Allow bash access to vscode user's local bin
-ENV PATH="/home/vscode/.local/bin:${PATH}"
+# Switch to vscode user and install uv
 USER vscode
+
+# Install uv for vscode user
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+# Add .local/bin to PATH for vscode user to access uv
+ENV PATH="/home/vscode/.local/bin:${PATH}"
+
+# Create virtual environment for Python
+RUN uv venv /home/vscode/.venv
+ENV PATH="/home/vscode/.venv/bin:${PATH}"
+
+WORKDIR /workspace

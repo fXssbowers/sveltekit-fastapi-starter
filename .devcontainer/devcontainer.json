@@ -18,7 +18,7 @@
         "mhutchie.git-graph"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.defaultInterpreterPath": "/home/vscode/.venv/bin/python",
         "python.linting.enabled": true,
         "python.linting.ruffEnabled": true,
         "python.testing.pytestEnabled": true,
@@ -42,7 +42,7 @@
       }
     }
   },
-  "postCreateCommand": "npm --prefix frontend install && pip install -r backend/requirements.txt",
+  "postCreateCommand": "npm --prefix frontend install && uv pip install -r backend/requirements-dev.txt && pre-commit install",
   "remoteUser": "vscode",
   "updateRemoteUserUID": true
 }
