@@ -125,11 +125,23 @@ cd backend
 pyright
 ```
 
-**VS Code Integration:**
-Pyright is integrated via the [Pylance extension](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance), which provides real-time type checking, IntelliSense, and error highlighting.
-
 **Configuration:**
 Type checking is set to `strict` mode in [backend/pyproject.toml](backend/pyproject.toml). You can adjust the strictness level or enable/disable specific rules as needed.
+
+## Git hooks (pre-commit)
+
+This project uses pre-commit to run various hooks (ruff, pyright, ...) before each commit.
+
+- Devcontainer: pre-commit and the Git hook are installed automatically after the container is created. Nothing to do.
+
+Local setup (outside the Dev Container):
+
+```bash
+pre-commit install
+# Optional: run on all files immediately
+pre-commit run --all-files
+```
+
 
 ## Testing
 

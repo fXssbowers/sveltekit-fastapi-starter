@@ -42,7 +42,7 @@
       }
     }
   },
-  "postCreateCommand": "npm --prefix frontend install && uv pip install -r backend/requirements-dev.txt",
+  "postCreateCommand": "npm --prefix frontend install && uv pip install -r backend/requirements-dev.txt && pre-commit install",
   "remoteUser": "vscode",
   "updateRemoteUserUID": true
 }

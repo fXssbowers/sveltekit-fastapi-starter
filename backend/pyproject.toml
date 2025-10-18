@@ -18,7 +18,8 @@ dependencies = [
 dev = [
     "pytest",
     "ruff",
-    "pyright"
+    "pyright",
+    "pre-commit"
 ]
 
 [tool.pytest.ini_options]
