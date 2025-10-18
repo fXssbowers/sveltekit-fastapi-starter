@@ -28,7 +28,7 @@ Note: Always run `docker compose` commands in a terminal on your host machine, n
 - Install prerequisites:
     - Docker
     - Node.js 24+
-    - Python 3.14+
+    - Python 3.13+
     - uv package installer (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
 
 - #### Backend (FastAPI)
@@ -36,7 +36,7 @@ Note: Always run `docker compose` commands in a terminal on your host machine, n
 1. Create a virtual environment:
 ```bash
 cd backend
-uv venv --python 3.14
+uv venv --python 3.13
 source .venv/bin/activate
 ```
 
@@ -63,6 +63,73 @@ uv pip install -r requirements.txt
 The services will be available at:
 - Frontend: http://localhost:3000
 - Backend: http://localhost:8000
+
+## Managing Python dependencies with uv
+
+When adding or updating dependencies:
+
+1. Edit [backend/pyproject.toml](backend/pyproject.toml)
+   - Add runtime deps under `[project].dependencies`
+   - Add dev-only deps under `[project.optional-dependencies].dev`
+
+2. Recompile pinned requirements:
+```bash
+cd backend
+uv pip compile pyproject.toml -o requirements.txt
+uv pip compile pyproject.toml --extra dev -o requirements-dev.txt
+```
+
+3. Install:
+```bash
+uv pip install -r requirements.txt
+# Or for dev environment:
+uv pip install -r requirements-dev.txt
+```
+
+## Code Quality and Linting
+
+### Backend (Python)
+
+The backend uses **Ruff** for linting and formatting, and **Pyright** for type checking. Configuration is in [backend/pyproject.toml](backend/pyproject.toml).
+
+#### Ruff
+
+Ruff is an extremely fast Python linter and formatter that replaces tools like Flake8, isort, and Black.
+
+**Run linting:**
+```bash
+cd backend
+ruff check .
+```
+
+**Auto-fix issues:**
+```bash
+ruff check --fix .
+```
+
+**Format code:**
+```bash
+ruff format .
+```
+
+**VS Code Integration:**
+The devcontainer automatically configures Ruff for format-on-save and auto-fix-on-save via the [Ruff extension](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff).
+
+#### Pyright
+
+Pyright is a fast, feature-rich static type checker for Python.
+
+**Run type checking:**
+```bash
+cd backend
+pyright
+```
+
+**VS Code Integration:**
+Pyright is integrated via the [Pylance extension](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance), which provides real-time type checking, IntelliSense, and error highlighting.
+
+**Configuration:**
+Type checking is set to `strict` mode in [backend/pyproject.toml](backend/pyproject.toml). You can adjust the strictness level or enable/disable specific rules as needed.
 
 ## Testing
 
