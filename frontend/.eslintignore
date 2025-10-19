@@ -1,0 +1,30 @@
+# Build outputs
+.svelte-kit
+build
+dist
+package
+
+# Dependencies
+node_modules
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Environment files
+.env
+.env.*
+
+# Coverage reports
+coverage
+
+# Configuration files (optional - uncomment if you don't want to lint config files)
+# *.config.js
+# *.config.ts
+
+# Generated types
+.svelte-kit/types
+
+# Static assets
+static

@@ -128,16 +128,63 @@ pyright
 **Configuration:**
 Type checking is set to `strict` mode in [backend/pyproject.toml](backend/pyproject.toml). You can adjust the strictness level or enable/disable specific rules as needed.
 
+### Frontend (SvelteKit/TypeScript)
+
+The frontend uses **ESLint** for linting, **Prettier** for formatting, and **svelte-check** for type checking.
+
+#### ESLint
+
+**Run linting:**
+```bash
+cd frontend
+npm run lint
+```
+
+Configuration is in [frontend/eslint.config.js](frontend/eslint.config.js).
+
+#### Prettier
+
+**Format code:**
+```bash
+cd frontend
+npm run format
+```
+
+Configuration is in [frontend/prettier.config.js](frontend/prettier.config.js).
+
+#### svelte-check
+
+**Run type checking:**
+```bash
+cd frontend
+npm run check
+```
+
+**VS Code Integration:**
+The devcontainer automatically configures ESLint and Prettier for format-on-save via the [Svelte extension](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+
 ## Git hooks (pre-commit)
 
-This project uses pre-commit to run various hooks (ruff, pyright, ...) before each commit.
+This project uses pre-commit to run various hooks before each commit:
+- **Backend**: Ruff (linting + formatting)
+- **Frontend**: ESLint, Prettier, svelte-check
+- **Security**: Gitleaks (secret detection)
+- **General**: YAML/TOML validation, trailing whitespace, etc.
 
-- Devcontainer: pre-commit and the Git hook are installed automatically after the container is created. Nothing to do.
+**Devcontainer**: pre-commit and the Git hook are installed automatically after the container is created.
 
-Local setup (outside the Dev Container):
+**Local setup** (outside the Dev Container):
 
 ```bash
+# Install pre-commit
+pip install pre-commit  # or: uv pip install pre-commit
+
+# Install frontend dependencies (required for frontend hooks)
+cd frontend && npm install && cd ..
+
+# Install the git hooks
 pre-commit install
+
 # Optional: run on all files immediately
 pre-commit run --all-files
 ```
