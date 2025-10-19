@@ -20,7 +20,7 @@ export default [
 		}
 	},
 	{
-		files: ['*.js', '*.config.ts'],
+		files: ['**/*.js', '*.config.ts'],
 		...tsEslint.configs.disableTypeChecked
 	},
 	...eslintPluginSvelte.configs['flat/recommended'],
