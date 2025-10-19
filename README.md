@@ -198,12 +198,6 @@ cd backend
 pytest
 ```
 
-### Frontend
-```bash
-cd frontend
-npm run check
-```
-
 ## Building for Production
 
 ### Backend
@@ -217,3 +211,21 @@ docker build -t fastapi-backend .
 cd frontend
 docker build -t sveltekit-frontend .
 ```
+
+## Conventional Commits
+
+Use Conventional Commits for all commit messages to keep history consistent and automatable.
+
+Format:
+- type(scope): short imperative summary
+
+Common types:
+- build, chore, ci, docs, feat, fix, perf, refactor, revert, style, test
+
+Examples:
+- feat(auth): add refresh token endpoint
+- fix(api): handle 404 on user lookup
+- docs(readme): add setup instructions
+
+Enforcement:
+- A commit-msg hook is configured via pre-commit.
