@@ -15,6 +15,7 @@
         "ms-python.vscode-pylance",
         "charliermarsh.ruff",
         "svelte.svelte-vscode",
+        "dbaeumer.vscode-eslint",
         "mhutchie.git-graph"
       ],
       "settings": {
@@ -24,6 +25,15 @@
         "python.testing.pytestEnabled": true,
         "svelte.enable-ts-plugin": true,
         "terminal.integrated.defaultProfile.linux": "bash",
+        "eslint.validate": [
+          "javascript",
+          "typescript",
+          "svelte"
+        ],
+        "eslint.workingDirectories": [
+          { "directory": "./frontend", "changeProcessCWD": true }
+        ],
+        "prettier.documentSelectors": ["**/*.svelte"],
         "[python]": {
           "editor.defaultFormatter": "charliermarsh.ruff",
           "editor.formatOnSave": true,
@@ -34,11 +44,24 @@
         },
         "[svelte]": {
           "editor.defaultFormatter": "svelte.svelte-vscode",
-          "editor.formatOnSave": true
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+          }
         },
         "[typescript]": {
           "editor.defaultFormatter": "vscode.typescript-language-features",
-          "editor.formatOnSave": true
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+          }
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "vscode.typescript-language-features",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+          }
         }
       }
     }
